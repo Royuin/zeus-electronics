@@ -5,8 +5,8 @@ const GraphicsCardSchema = new Schema ({
   name: { type: String, required: true },
   category: { type: Schema.Types.ObjectId, ref: 'Graphics Card', required: true },
   description: { type: String, required: true },
-  price: { type: String, required: true },
-  quantity: { type: String, required: true },
+  price: { type: Number, required: true },
+  quantity: { type: Number, required: true },
 })
 
 GraphicsCardSchema.virtual('url').get(function() {
