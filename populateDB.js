@@ -27,7 +27,7 @@ async function main() {
   console.log('Debug: Should be connected?');
   await createCategories();
   await createGraphicsCards();
-  await createMemory();
+  await createMemoryProducts();
   await createMotherboards();
   await createProcessors();
 }
@@ -67,3 +67,56 @@ async function processorCreate(index, name, description, price, quantity) {
   console.log(`Added processor ${name}`);
 }
 
+async function createCategories() {
+  console.log('Adding categories');
+  await Promise.all ([
+    categoryCreate(0, 'Graphics Cards'),
+    categoryCreate(1, 'Memory'),
+    categoryCreate(2, 'Motherboards'),
+    categoryCreate(3, 'Processors'),
+  ])
+}
+
+async function createGraphicsCards() {
+  console.log('Adding graphics cards');
+  await Promise.all([
+    graphicsCardCreate(
+      0,
+      'AMD Radeon RX 6950 XT',
+      categories[0],
+      'This is where you would put a desciption of the product. For now this is just placeholder text.',
+      549.99,
+      17
+    ),
+    graphicsCardCreate(
+      1,
+      'NVIDIA GeForce RTX 4090',
+      categories[0],
+      'This is where you would put a desciption of the product. For now this is just placeholder text.',
+      2099.99,
+      3,
+    ),
+    graphicsCardCreate(
+      2,
+      'NVIDIA GeForce RTX 4070',
+      categories[0],
+      'This is where you would put a desciption of the product. For now this is just placeholder text.',
+      549.99,
+      11,
+    ),
+  ])
+}
+
+async function createMemoryProducts() {
+  console.log('Adding memory products');
+  await Promise.all([
+    memoryCreate(
+      0,
+      'G.Skill Ripjaws V 32GB',
+      categories[1],
+      'This is where you would put a desciption of the product. For now this is just placeholder text.',
+      211.99,
+      26,
+    ),
+  ])
+}
