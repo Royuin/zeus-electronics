@@ -118,5 +118,21 @@ async function createMemoryProducts() {
       211.99,
       26,
     ),
+    memoryCreate(
+      1,
+      'G.Skill Flare X5 Series 32GB',
+      categories[1],
+      'This is where you would put a desciption of the product. For now this is just placeholder text.',
+      269.99,
+      14,
+    ),
+    memoryCreate(
+      2,
+      'Corsair Vengeance LPX 64GB',
+      categories[1],
+      'This is where you would put a desciption of the product. For now this is just placeholder text.',
+      164.99,
+      22,
+    )
   ])
 }
