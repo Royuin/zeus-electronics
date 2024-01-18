@@ -30,42 +30,42 @@ async function main() {
   await createMemoryProducts();
   await createMotherboards();
   await createProcessors();
-}
+};
 
 async function categoryCreate(index, name) {
   const category = new Category({ name: name });
   await category.save();
   categories[index] = category;
   console.log(`Added category: ${name}`);
-}
+};
 
 async function graphicsCardCreate(index, name, category, description, price, quantity) {
   const graphicsCard = new GraphicsCard({ name: name, category: category, description: description, price: price, quantity: quantity });
   await graphicsCard.save();
   graphicsCards[index] = graphicsCard;
   console.log(`Added graphics card ${name}`);
-}
+};
 
 async function memoryCreate(index, name, category, description, price, quantity) {
   const memory = new Memory({ name: name, category: category, description: description, price: price, quantity: quantity });
   await memory.save();
   memoryItems[index] = memory;
   console.log(`Added memory item ${name}`);
-}
+};
 
 async function motherboardCreate(index, name, category, description, price, quantity) {
   const motherboard = new Motherboard({ name: name, category: category, description: description, price: price, quantity: quantity });
   await motherboard.save();
   motherboards[index] = motherboard;
   console.log(`Added motherboard ${name}`);
-}
+};
 
 async function processorCreate(index, name, category, description, price, quantity) {
   const processor = new Processor({ name: name, category: category, description: description, price: price, quantity: quantity });
   await processor.save();
   processors[index] = processor;
   console.log(`Added processor ${name}`);
-}
+};
 
 async function createCategories() {
   console.log('Adding categories');
@@ -75,7 +75,7 @@ async function createCategories() {
     categoryCreate(2, 'Motherboards'),
     categoryCreate(3, 'Processors'),
   ])
-}
+};
 
 async function createGraphicsCards() {
   console.log('Adding graphics cards');
@@ -105,7 +105,7 @@ async function createGraphicsCards() {
       11,
     ),
   ])
-}
+};
 
 async function createMemoryProducts() {
   console.log('Adding memory products');
@@ -135,4 +135,35 @@ async function createMemoryProducts() {
       22,
     )
   ])
-}
+};
+
+async function createMotherboards() {
+  console.log('Adding motherboards'); 
+  await Promise.all([
+    motherboardCreate( 
+      0,
+      'Gigabyte B650 Gaming X AX',
+      categories[2], 
+      'This is where you would put a desciption of the product. For now this is just placeholder text.',
+      199.99,
+      18,
+    ),
+    motherboardCreate(
+      0,
+      'MSI Z690-A Pro WiFi DDR4',
+      categories[2],
+      'This is where you would put a desciption of the product. For now this is just placeholder text.',
+      229.99,
+      13,
+    ),
+    motherboardCreate(
+      0,
+      'ASRock X670E Pro RS',
+      categories[2],
+      'This is where you would put a desciption of the product. For now this is just placeholder text.',
+      249.99,
+      7,
+    ),
+  ]);
+};
+
