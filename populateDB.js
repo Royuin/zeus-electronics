@@ -46,21 +46,21 @@ async function graphicsCardCreate(index, name, category, description, price, qua
   console.log(`Added graphics card ${name}`);
 }
 
-async function memoryCreate(index, name, description, price, quantity) {
+async function memoryCreate(index, name, category, description, price, quantity) {
   const memory = new Memory({ name: name, category: category, description: description, price: price, quantity: quantity });
   await memory.save();
   memoryItems[index] = memory;
   console.log(`Added memory item ${name}`);
 }
 
-async function motherboardCreate(index, name, description, price, quantity) {
+async function motherboardCreate(index, name, category, description, price, quantity) {
   const motherboard = new Motherboard({ name: name, category: category, description: description, price: price, quantity: quantity });
   await motherboard.save();
   motherboards[index] = motherboard;
   console.log(`Added motherboard ${name}`);
 }
 
-async function processorCreate(index, name, description, price, quantity) {
+async function processorCreate(index, name, category, description, price, quantity) {
   const processor = new Processor({ name: name, category: category, description: description, price: price, quantity: quantity });
   await processor.save();
   processors[index] = processor;
