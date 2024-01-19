@@ -167,3 +167,33 @@ async function createMotherboards() {
   ]);
 };
 
+async function createProcessors() {
+  console.log('Adding processors');
+  await Promise.all([
+    processorCreate(
+      0,
+      'Intel Core i9-12900K',
+      categories[3],
+      'This is where you would put a desciption of the product. For now this is just placeholder text.',
+      649.99,
+      2,
+    ),
+    processorCreate(
+      0,
+      'Intel Core i7-12700K',
+      categories[3],
+      'This is where you would put a desciption of the product. For now this is just placeholder text.',
+      449.99,
+      24,
+    ),
+    processorCreate(
+      0,
+      'AMD Ryzen 7 5800X3D',
+      categories[3],
+      'This is where you would put a desciption of the product. For now this is just placeholder text.',
+      449.99,
+      23,
+    ),
+  ]);
+};
+
