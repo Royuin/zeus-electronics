@@ -14,7 +14,7 @@ const mongoose = require('mongoose');
 main().catch(err => console.log(err));
 
 async function main() {
-  await mongoose.connect('mongodb+srv://royuindev:royuindev@zeus-electronics.cbomskj.mongodb.net/?retryWrites=true&w=majority');
+  await mongoose.connect('mongodb+srv://royuindev:zeusadmin@zeus-electronics.cbomskj.mongodb.net/?retryWrites=true&w=majority');
 }
 
 // view engine setup
