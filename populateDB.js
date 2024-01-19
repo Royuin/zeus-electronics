@@ -2,6 +2,8 @@
 
 console.log('This script populates some test pc parts and categories to your database');
 
+const userArgs = process.argv.slice(2);
+
 const Category = require('./models/category');
 const GraphicsCard = require('./models/graphicsCard');
 const Memory = require('./models/memory');
