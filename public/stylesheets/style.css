@@ -1,6 +1,7 @@
 :root {
   --light-amber: #ffebeb;
   --dark-blue: #082f49;
+  --mid-saturated-amber: #f59e0b;
 }
 
 * {
@@ -10,11 +11,21 @@
 }
 
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: var(--light-amber);
 }
 
+nav {
+  background-color: var(--dark-blue);
+  height: clamp(75px, 10vw, 200px);
+  color: var(--mid-saturated-amber);
+  box-shadow: 0px 0px 20px var(--dark-blue);
+}
+
+h1 {
+  font-size: clamp(20px, 2vw, 35px);
+}
+ 
 a {
   color: #00B7FF;
 }
