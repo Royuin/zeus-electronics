@@ -10,7 +10,7 @@ const GraphicsCardSchema = new Schema ({
 })
 
 GraphicsCardSchema.virtual('url').get(function() {
-  return `/graphics-cards/${this._id}`;
+  return `graphics-card/${this._id}`;
   });
 
 module.exports = mongoose.model('Graphics Card', GraphicsCardSchema);
