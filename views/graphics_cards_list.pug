@@ -1,0 +1,11 @@
+extends layout 
+
+block content
+
+  h2= title
+
+  ul 
+    each card in graphics_cards_list
+      li
+        a(href=`${card.url}`) #{card.name}
+
