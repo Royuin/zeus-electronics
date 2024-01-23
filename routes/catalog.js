@@ -8,4 +8,6 @@ router.get('/category/graphics-cards/:id', categoryController.graphics_cards_lis
 
 router.get('/category/memory/:id', categoryController.memory_list);
 
+router.get('/category/motherboards/:id', categoryController.motherboard_list);
+
 module.exports = router;
