@@ -10,4 +10,6 @@ router.get('/category/memory/:id', categoryController.memory_list);
 
 router.get('/category/motherboards/:id', categoryController.motherboard_list);
 
+router.get('/category/processors/:id', categoryController.processor_list);
+
 module.exports = router;
