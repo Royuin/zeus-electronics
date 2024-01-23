@@ -2,6 +2,7 @@ const Category = require('../models/category');
 const GraphicsCard = require('../models/graphicsCard');
 const Memory = require('../models/memory');
 const Motherboard = require('../models/motherboard');
+const Processor = require('../models/processor');
 
 const asyncHandler = require('express-async-handler');
 
@@ -36,3 +37,11 @@ exports.motherboard_list = asyncHandler( async (req, res, next) => {
     motherboards_list: allMotherboards,
   })
 })
+
+exports.processor_list = asyncHandler( async (req, res, next) => {
+  const allProcessors = await Processor.find().sort({ name: 1 }).exec();
+  res.render('processor_list', {
+    title: 'Processors',
+    processor_list: allProcessors,
+  });
+});
