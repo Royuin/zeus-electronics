@@ -1,5 +1,6 @@
 const Category = require('../models/category');
 const GraphicsCard = require('../models/graphicsCard');
+const Memory = require('../models/memory');
 
 const asyncHandler = require('express-async-handler');
 
@@ -18,3 +19,12 @@ exports.graphics_cards_list = asyncHandler( async (req, res, next) => {
     graphics_cards_list: allGraphicsCards,
   })
 })
+
+exports.memory_list = asyncHandler( async (req, res, next) => {
+  const allMemoryProducts = await Memory.find().sort({ name: 1 }).exec();
+  res.render('memory_list', {
+    title: 'Computer Memory',
+    memory_products: allMemoryProducts,
+  })
+})
+
