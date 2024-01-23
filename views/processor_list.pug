@@ -1,0 +1,10 @@
+extends layout 
+
+block content
+
+  h2= title
+
+  ul  
+    each processor in processor_list
+      li
+        a(href=`${processor.url}`) #{processor.name}
