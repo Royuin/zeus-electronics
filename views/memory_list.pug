@@ -1,0 +1,10 @@
+extends layout
+
+block content
+
+  h2= title
+
+  ul
+    each product in memory_products
+      li
+        a(href=`catalog${product.url}`) #{product.name}
