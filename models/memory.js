@@ -10,7 +10,7 @@ const MemorySchema = new Schema ({
 });
 
 MemorySchema.virtual('url').get(function() {
-  return `/memory/${this._id}`;
+  return `product/${this._id}`;
 });
 
 module.exports = mongoose.model('Memory', MemorySchema);
