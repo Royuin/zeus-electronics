@@ -10,7 +10,7 @@ const MotherBoardSchema = new Schema ({
 });
 
 MotherBoardSchema.virtual('url').get(function() {
-  return `/motherboards/${this._id}`;
+  return `product/${this._id}`;
 })
 
 module.exports = mongoose.model('Motherboard', MotherBoardSchema);

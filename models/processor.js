@@ -10,7 +10,7 @@ const ProcessorSchema = new Schema ({
 })
 
 ProcessorSchema.virtual('url').get(function() {
-  return `/processors/${this._id}`;
+  return `product/${this._id}`;
 });
 
 module.exports = mongoose.model('Processor', ProcessorSchema);
