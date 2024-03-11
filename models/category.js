@@ -10,7 +10,7 @@ CategorySchema.virtual('url').get(function() {
   const trimmedName = this.name.trim();
   const hyphenName = trimmedName.replaceAll(' ', '-').toLowerCase();
   
-  return `/category/${hyphenName}/${this._id}`;
+  return `category/${hyphenName}/${this._id}`;
 });
 
 
