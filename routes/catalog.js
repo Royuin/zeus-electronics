@@ -4,6 +4,7 @@ const categoryController = require('../controllers/categoryController');
 const graphicsCardController = require('../controllers/graphicsCardController');
 const memoryController = require('../controllers/memoryController');
 const motherboardController = require('../controllers/motherboardController');
+const processorController = require('../controllers/processorController');
 
 router.get('/', categoryController.category_list);
 
@@ -17,5 +18,6 @@ router.get('/category/motherboards/:id', categoryController.motherboard_list);
 router.get('/category/motherboards/product/:productId', motherboardController.motherboard_details);
 
 router.get('/category/processors/:id', categoryController.processor_list);
+router.get('/category/processors/product/:productId', processorController.processor_details);
 
 module.exports = router;
