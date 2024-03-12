@@ -7,5 +7,5 @@ exports.processor_details = asyncHandler( async (req, res, next) => {
   res.render('processor_details', {
     title: processorProduct.name,
     product: processorProduct,
-    });
+  });
 });
