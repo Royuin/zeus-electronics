@@ -6,6 +6,12 @@ const Processor = require('../models/processor');
 
 const asyncHandler = require('express-async-handler');
 
+exports.category_create_get =  (req, res, next) => {
+  res.render('category_form', {
+    title: 'Create New Category',
+  })
+}
+
 exports.category_list = asyncHandler(async (req, res, next) => {
   const allCategories = await Category.find().sort({ name: 1 }).exec();
   res.render('category_list', {
@@ -45,3 +51,4 @@ exports.processor_list = asyncHandler( async (req, res, next) => {
     processor_list: allProcessors,
   });
 });
+
