@@ -8,6 +8,8 @@ const processorController = require('../controllers/processorController');
 
 router.get('/', categoryController.category_list);
 
+router.get('/category/create', categoryController.category_create_get);
+
 router.get('/category/graphics-cards/:id', categoryController.graphics_cards_list);
 router.get('/category/graphics-cards/product/:productId', graphicsCardController.graphics_card_details);
 
