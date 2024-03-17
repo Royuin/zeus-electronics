@@ -9,3 +9,9 @@ exports.graphics_card_details = asyncHandler( async (req, res, next) => {
     graphicsCard: graphicsCard,
   });
 });
+
+exports.graphics_card_create_get = asyncHandler( async (req, res, next) => {
+  res.render('graphics_card_form', {
+    title: 'Create a new graphics Card',
+  });
+});
