@@ -4,7 +4,16 @@ block content
 
   h2= title
 
-  form
-    label(for='name') Name
-    input(type='text', id='name', name='name')
+  form(method='POST')
+    label(for='name') Name:
+    input#name(type='text', name='name')
     button(type='submit') Create
+
+  if (errors)
+    ul
+      for error in errors
+        li!= error.msg
+
+  if (category_exists)
+    p Category already exists please delete before creating.
+    a(href=`${category_exists.url}`) #{category_exists.name}
