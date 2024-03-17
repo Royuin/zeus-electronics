@@ -34,6 +34,9 @@ exports.category_create_post = [
           category_exists: categoryExists,
           });
         return;
+      } else {
+        await category.save();
+        res.redirect(category.url);
       }
     }
   }),
