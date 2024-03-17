@@ -5,16 +5,21 @@ block content
   h2= title
 
   form(method='POST')
-    label(for='name') Name
-    input(type='text', id='name', name='name')
+    label(for='name') Name:
+    input(type='text', id='name', name='name' value=`${name}`)
 
-    label(for='description') Description
-    input(type='text', id='description', name='description')
+    label(for='description') Description:
+    input(type='text', id='description', name='description' value=`${description}`)
 
-    label(for='price') Price
-    input(type='tel', id='price', name='price')
+    label(for='price') Price:
+    input(type='tel', id='price', name='price' value=`${price}`)
 
-    label(for='quantity') Quantity
-    input(type='tel', id='quantity', name='quantity')
+    label(for='quantity') Quantity:
+    input(type='tel', id='quantity', name='quantity' value=`${quantity}`)
 
     button(type='submit' value='Submit') Create
+
+  if (errors)
+    ul
+      for error in errors
+        li!= error.msg
