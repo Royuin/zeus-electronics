@@ -25,5 +25,6 @@ router.get('/category/processors/:id', categoryController.processor_list);
 router.get('/category/processors/product/:productId', processorController.processor_details);
 
 router.get('/product/create', productController.product_create_get);
+router.post('product/create', productController.product_create_post);
 
 module.exports = router;
