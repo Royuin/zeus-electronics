@@ -14,7 +14,10 @@ block content
     label(for='category') Category:
     select(name='category', id='category')
       for category in categories
-        option(value=`${category.name}`) #{category.name}
+        if (category_selection === category.name) 
+          option(value=`${category.name}` selected) #{category.name}
+        else
+          option(value=`${category.name}`) #{category.name}
 
     label(for='price') Price:
     input(type='tel', id='price', name='price' value=(price===undefined ? '' : price))
