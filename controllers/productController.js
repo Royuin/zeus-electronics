@@ -1,9 +1,13 @@
 const { body, validationResult } = require('express-validator');
 const asyncHandler = require('express-async-handler');
+const Category = require('../models/category');
 
 exports.product_create_get = asyncHandler( async (req, res, next) => {
+  const categories = await Category.find().exec();
+
   res.render('product_form', {
     title: 'Create a new product',
+    categories: categories,
   });
 });
 
