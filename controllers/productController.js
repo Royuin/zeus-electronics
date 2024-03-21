@@ -19,15 +19,18 @@ exports.product_create_post = [
 
   asyncHandler( async (req, res, next) => {
     const errors = validationResult(req);
+    const categories = await Category.find().exec();
 
     if(!errors.isEmpty()) {
       res.render('product_form', {
         title: 'Create a new product',
         errors: errors.array(),
-        previous_name: req.body.name,
+        name: req.body.name,
         description: req.body.description,
+        category_selection: req.body.category,
         price: req.body.price,
         quantity: req.body.quantity,
+        categories: categories,
       });
       return;
     }  
