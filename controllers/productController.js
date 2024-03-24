@@ -1,6 +1,7 @@
 const { body, validationResult } = require('express-validator');
 const asyncHandler = require('express-async-handler');
 const Category = require('../models/category');
+const Product = require('../models/product');
 
 exports.product_create_get = asyncHandler( async (req, res, next) => {
   const categories = await Category.find().exec();
@@ -33,6 +34,26 @@ exports.product_create_post = [
         categories: categories,
       });
       return;
-    }  
+    } else {
+      const productExists = await Product.findOne({name: req.body.name}).exec();
+      if (productExists) {
+        console.log('Product already exists');
+        res.render('product_form', {
+          title: 'Create a new product',
+          errors: errors.array(),
+          name: req.body.name,
+          description: req.body.description,
+          category_selection: req.body.category,
+          price: req.body.price,
+          quantity: req.body.quantity,
+          categories: categories,
+        });
+        return;
+      }
+      else {
+        return console.log('Submit complete' );
+      }
+    }
+
   }),
 ]
