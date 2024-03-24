@@ -10,6 +10,8 @@ router.post('/category/create', categoryController.category_create_post);
 
 router.get('/category/:hypenName/:id', categoryController.category_products);
 
+router.get('/product/:id', productController.product_details);
+
 router.get('/product/create', productController.product_create_get);
 router.post('/product/create', productController.product_create_post);
 
