@@ -1,0 +1,10 @@
+extends layout
+
+block content
+
+  h2 #{category.name} Products
+
+  ul
+    each product in products
+      li
+        a(href=`${product.url}`) #{product.name}
