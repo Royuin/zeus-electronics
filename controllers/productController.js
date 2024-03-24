@@ -57,3 +57,13 @@ exports.product_create_post = [
 
   }),
 ]
+
+exports.product_details = asyncHandler( async (req, res, next) => {
+  const product = await Product.findById( req.params.id ).exec();
+  const category = await Category.findById(product.category).exec();
+
+  res.render('product_details', {
+    product: product,
+    category: category,
+  });
+});
