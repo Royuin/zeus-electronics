@@ -1,20 +1,13 @@
 #! /usr/bin/env node
 
 console.log('This script populates some test pc parts and categories to your database');
-
 const userArgs = process.argv.slice(2);
 
 const Category = require('./models/category');
-const GraphicsCard = require('./models/graphicsCard');
-const Memory = require('./models/memory');
-const Motherboard = require('./models/motherboard');
-const Processor = require('./models/processor');
+const Product = require('./models/product');
 
 const categories = [];
-const graphicsCards = [];
-const memoryItems = [];
-const motherboards = [];
-const processors = [];
+const products = [];
 
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
@@ -28,10 +21,7 @@ async function main() {
   await mongoose.connect(mongoDB);
   console.log('Debug: Should be connected?');
   await createCategories();
-  await createGraphicsCards();
-  await createMemoryProducts();
-  await createMotherboards();
-  await createProcessors();
+  await createProducts();
 };
 
 async function categoryCreate(index, name) {
@@ -41,33 +31,12 @@ async function categoryCreate(index, name) {
   console.log(`Added category: ${name}`);
 };
 
-async function graphicsCardCreate(index, name, category, description, price, quantity) {
-  const graphicsCard = new GraphicsCard({ name: name, category: category, description: description, price: price, quantity: quantity });
-  await graphicsCard.save();
-  graphicsCards[index] = graphicsCard;
-  console.log(`Added graphics card ${name}`);
-};
-
-async function memoryCreate(index, name, category, description, price, quantity) {
-  const memory = new Memory({ name: name, category: category, description: description, price: price, quantity: quantity });
-  await memory.save();
-  memoryItems[index] = memory;
-  console.log(`Added memory item ${name}`);
-};
-
-async function motherboardCreate(index, name, category, description, price, quantity) {
-  const motherboard = new Motherboard({ name: name, category: category, description: description, price: price, quantity: quantity });
-  await motherboard.save();
-  motherboards[index] = motherboard;
-  console.log(`Added motherboard ${name}`);
-};
-
-async function processorCreate(index, name, category, description, price, quantity) {
-  const processor = new Processor({ name: name, category: category, description: description, price: price, quantity: quantity });
-  await processor.save();
-  processors[index] = processor;
-  console.log(`Added processor ${name}`);
-};
+async function productCreate(index, name, category, description, price, quantity) {
+  const product = new Product({name: name, category: category, description: description, price: price, quantity: quantity});
+  await product.save();
+  products[index] = product;
+  console.log(`Added product ${name}`);
+}
 
 async function createCategories() {
   console.log('Adding categories');
@@ -79,10 +48,10 @@ async function createCategories() {
   ])
 };
 
-async function createGraphicsCards() {
-  console.log('Adding graphics cards');
+async function createProducts() {
+  console.log('Adding products');
   await Promise.all([
-    graphicsCardCreate(
+    productCreate(
       0,
       'AMD Radeon RX 6950 XT',
       categories[0],
@@ -90,7 +59,7 @@ async function createGraphicsCards() {
       549.99,
       17
     ),
-    graphicsCardCreate(
+    productCreate(
       1,
       'NVIDIA GeForce RTX 4090',
       categories[0],
@@ -98,7 +67,7 @@ async function createGraphicsCards() {
       2099.99,
       3,
     ),
-    graphicsCardCreate(
+    productCreate(
       2,
       'NVIDIA GeForce RTX 4070',
       categories[0],
@@ -106,73 +75,7 @@ async function createGraphicsCards() {
       549.99,
       11,
     ),
-  ])
-};
-
-async function createMemoryProducts() {
-  console.log('Adding memory products');
-  await Promise.all([
-    memoryCreate(
-      0,
-      'G.Skill Ripjaws V 32GB',
-      categories[1],
-      'This is where you would put a desciption of the product. For now this is just placeholder text.',
-      211.99,
-      26,
-    ),
-    memoryCreate(
-      1,
-      'G.Skill Flare X5 Series 32GB',
-      categories[1],
-      'This is where you would put a desciption of the product. For now this is just placeholder text.',
-      269.99,
-      14,
-    ),
-    memoryCreate(
-      2,
-      'Corsair Vengeance LPX 64GB',
-      categories[1],
-      'This is where you would put a desciption of the product. For now this is just placeholder text.',
-      164.99,
-      22,
-    )
-  ])
-};
-
-async function createMotherboards() {
-  console.log('Adding motherboards'); 
-  await Promise.all([
-    motherboardCreate( 
-      0,
-      'Gigabyte B650 Gaming X AX',
-      categories[2], 
-      'This is where you would put a desciption of the product. For now this is just placeholder text.',
-      199.99,
-      18,
-    ),
-    motherboardCreate(
-      0,
-      'MSI Z690-A Pro WiFi DDR4',
-      categories[2],
-      'This is where you would put a desciption of the product. For now this is just placeholder text.',
-      229.99,
-      13,
-    ),
-    motherboardCreate(
-      0,
-      'ASRock X670E Pro RS',
-      categories[2],
-      'This is where you would put a desciption of the product. For now this is just placeholder text.',
-      249.99,
-      7,
-    ),
-  ]);
-};
-
-async function createProcessors() {
-  console.log('Adding processors');
-  await Promise.all([
-    processorCreate(
+    productCreate(
       0,
       'Intel Core i9-12900K',
       categories[3],
@@ -180,7 +83,7 @@ async function createProcessors() {
       649.99,
       2,
     ),
-    processorCreate(
+    productCreate(
       0,
       'Intel Core i7-12700K',
       categories[3],
@@ -188,7 +91,7 @@ async function createProcessors() {
       449.99,
       24,
     ),
-    processorCreate(
+    productCreate(
       0,
       'AMD Ryzen 7 5800X3D',
       categories[3],
@@ -196,6 +99,30 @@ async function createProcessors() {
       449.99,
       23,
     ),
-  ]);
+    productCreate(
+      0,
+      'G.Skill Ripjaws V 32GB',
+      categories[1],
+      'This is where you would put a desciption of the product. For now this is just placeholder text.',
+      211.99,
+      26,
+    ),
+    productCreate(
+      1,
+      'G.Skill Flare X5 Series 32GB',
+      categories[1],
+      'This is where you would put a desciption of the product. For now this is just placeholder text.',
+      269.99,
+      14,
+    ),
+    productCreate(
+      2,
+      'Corsair Vengeance LPX 64GB',
+      categories[1],
+      'This is where you would put a desciption of the product. For now this is just placeholder text.',
+      164.99,
+      22,
+    ),
+  ])
 };
 
