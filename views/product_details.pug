@@ -1,0 +1,15 @@
+extends layout
+
+block content
+
+  ul  
+    li
+      p= product.name
+    li
+      a(href=category.url) #{category.name}
+    li 
+      p= product.description
+    li 
+      p= product.price
+    li 
+      p= product.quantity
