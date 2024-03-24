@@ -1,9 +1,10 @@
 const { validationResult, body } = require('express-validator');
 const Category = require('../models/category');
-const GraphicsCard = require('../models/graphicsCard');
-const Memory = require('../models/memory');
-const Motherboard = require('../models/motherboard');
-const Processor = require('../models/processor');
+// const GraphicsCard = require('../models/graphicsCard');
+// const Memory = require('../models/memory');
+// const Motherboard = require('../models/motherboard');
+// const Processor = require('../models/processor');
+const Product = require('../models/product');
 
 const asyncHandler = require('express-async-handler');
 
@@ -50,38 +51,14 @@ exports.category_list = asyncHandler(async (req, res, next) => {
   });
 })
 
-exports.graphics_cards_list = asyncHandler( async (req, res, next) => {
-  const allGraphicsCards = await GraphicsCard.find().sort({ name: 1 }).exec();
-  const graphicsCardCategory = await Category.findById(req.params.id).exec();
-  const categoryId = graphicsCardCategory._id;
-  res.render('graphics_cards_list', {
-    title: 'Graphics Cards',
-    graphics_cards_list: allGraphicsCards,
-    categoryId: categoryId,
-  })
-})
+exports.category_products = asyncHandler( async (req, res, next) => {
+  const [category, products] = await Promise.all([
+  Category.findById(req.params.id).exec(),
+  Product.find({category: req.params.id}).exec(),
+  ]);
 
-exports.memory_list = asyncHandler( async (req, res, next) => {
-  const allMemoryProducts = await Memory.find().sort({ name: 1 }).exec();
-  res.render('memory_list', {
-    title: 'Computer Memory',
-    memory_products: allMemoryProducts,
-  })
-})
-
-exports.motherboard_list = asyncHandler( async (req, res, next) => {
-  const allMotherboards = await Motherboard.find().sort({ name: 1 }).exec();
-  res.render('motherboards_list', {
-    title: 'Motherbaords',
-    motherboards_list: allMotherboards,
-  })
-})
-
-exports.processor_list = asyncHandler( async (req, res, next) => {
-  const allProcessors = await Processor.find().sort({ name: 1 }).exec();
-  res.render('processor_list', {
-    title: 'Processors',
-    processor_list: allProcessors,
+  res.render('category_products', {
+    products: products,
+    category: category,
   });
 });
-
