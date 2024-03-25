@@ -14,9 +14,11 @@ exports.product_create_get = asyncHandler( async (req, res, next) => {
 
 exports.product_create_post = [
   body('name', 'Name must contain at least 3 characters.').trim().isLength({min: 3}).escape(),
-  body('description').trim().escape(),
+  body('category').escape(),
+  body('description', 'Description must not be empty').trim().escape(),
   body('price', 'Price must not be empty and greater than 0.').trim().isFloat({min: 1}).escape(),
   body('quantity', 'Quantity must be empty and a whole non negative number.').trim().isInt({min: 0}).escape(),
+
 
   asyncHandler( async (req, res, next) => {
     const errors = validationResult(req);
@@ -51,7 +53,8 @@ exports.product_create_post = [
         return;
       }
       else {
-        const newProduct = Product({name: req.body.name, category: req.body.category, description: req.body.description, price: req.body.price, quantity: req.body.quantity});
+        const category = await Category.findOne({name: req.body.category}).exec();
+        const newProduct = Product({name: req.body.name, category: category, description: req.body.description, price: req.body.price, quantity: req.body.quantity});
         await newProduct.save();
         res.redirect(newProduct.url);
       }
