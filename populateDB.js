@@ -123,6 +123,30 @@ async function createProducts() {
       164.99,
       22,
     ),
+    productCreate( 
+      0,
+      'Gigabyte B650 Gaming X AX',
+      categories[2], 
+      'This is where you would put a desciption of the product. For now this is just placeholder text.',
+      199.99,
+      18,
+    ),
+    productCreate(
+      0,
+      'MSI Z690-A Pro WiFi DDR4',
+      categories[2],
+      'This is where you would put a desciption of the product. For now this is just placeholder text.',
+      229.99,
+      13,
+    ),
+    productCreate(
+      0,
+      'ASRock X670E Pro RS',
+      categories[2],
+      'This is where you would put a desciption of the product. For now this is just placeholder text.',
+      249.99,
+      7,
+    ),
   ])
 };
 
