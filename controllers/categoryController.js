@@ -1,9 +1,5 @@
 const { validationResult, body } = require('express-validator');
 const Category = require('../models/category');
-// const GraphicsCard = require('../models/graphicsCard');
-// const Memory = require('../models/memory');
-// const Motherboard = require('../models/motherboard');
-// const Processor = require('../models/processor');
 const Product = require('../models/product');
 
 const asyncHandler = require('express-async-handler');
