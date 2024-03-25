@@ -51,10 +51,11 @@ exports.product_create_post = [
         return;
       }
       else {
-        return console.log('Submit complete' );
+        const newProduct = Product({name: req.body.name, category: req.body.category, description: req.body.description, price: req.body.price, quantity: req.body.quantity});
+        await newProduct.save();
+        res.redirect(newProduct.url);
       }
     }
-
   }),
 ]
 
