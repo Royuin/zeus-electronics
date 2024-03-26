@@ -1,0 +1,19 @@
+extends layout
+
+block content
+
+  h2= category.name
+
+  if (category_products) 
+    
+    p Delete the following products before deleting this category
+
+    ul
+      each product in category_products
+        li 
+          a(href=product.url) #{product.name}
+
+  if (!category_products) 
+    form(method='POST')
+      button(type='submit') Delete
+
