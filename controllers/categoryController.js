@@ -49,8 +49,8 @@ exports.category_list = asyncHandler(async (req, res, next) => {
 
 exports.category_products = asyncHandler( async (req, res, next) => {
   const [category, products] = await Promise.all([
-  Category.findById(req.params.id).exec(),
-  Product.find({category: req.params.id}).exec(),
+    Category.findById(req.params.id).exec(),
+    Product.find({category: req.params.id}).exec(),
   ]);
 
   res.render('category_products', {
@@ -58,3 +58,32 @@ exports.category_products = asyncHandler( async (req, res, next) => {
     category: category,
   });
 });
+
+exports.category_delete_get = asyncHandler( async (req, res, next) => {
+  const [category, categoryProducts] = await Promise.all([
+    Category.findById(req.params.id).exec(),
+    Product.find({category: req.params.id}).exec(),
+  ]);
+
+  console.log(categoryProducts);
+
+  if (categoryProducts.length > 0) {
+    res.render('category_delete', {
+      category_products: categoryProducts,
+      category: category,
+    });
+  } else {
+    res.render('category_delete', {
+      category: category,
+      });
+    }
+
+});
+
+exports.category_delete_post = asyncHandler( async (req, res, next) => {
+  const [category, categoryProducts] = await Promise.all([
+    Category.findbyId(req.params.id).exec(),
+    Product.find({category: req.params.id}).exec(),
+  ]);
+});
+
