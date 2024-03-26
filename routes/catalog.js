@@ -14,5 +14,6 @@ router.post('/product/create', productController.product_create_post);
 router.get('/category/:hypenName/:id', categoryController.category_products);
 
 router.get('/product/:id', productController.product_details);
+router.get('/product/:id/delete', productController.product_delete_get);
 
 module.exports = router;
