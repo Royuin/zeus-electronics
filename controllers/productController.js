@@ -71,3 +71,21 @@ exports.product_details = asyncHandler( async (req, res, next) => {
     category: category,
   });
 });
+
+exports.product_delete_get = asyncHandler( async (req, res, next) => {
+  const product = await Product.findById(req.params.id).exec();
+  const category = await Category.findById(product.category).exec();
+
+  res.render('product_delete', {
+    product: product,
+    category: category,
+  });
+});
+
+exports.product_delete_post = asyncHandler( async (req, res, next) => {
+  const product = await Product.findById(req.params.id).exec();
+
+  await product.deleteOne();
+  console.log('Product has been deleted');
+  res.redirect('/');
+});
