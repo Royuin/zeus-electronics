@@ -86,6 +86,5 @@ exports.product_delete_post = asyncHandler( async (req, res, next) => {
   const product = await Product.findById(req.params.id).exec();
 
   await product.deleteOne();
-  console.log('Product has been deleted');
   res.redirect('/');
 });
