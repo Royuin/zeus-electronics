@@ -13,6 +13,8 @@ router.post('/category/:hypenName/:id/delete', categoryController.category_delet
 
 router.get('/product/create', productController.product_create_get);
 router.post('/product/create', productController.product_create_post);
+router.get('/product/:id/update', productController.product_update_get);
+router.post('/product/:id/update', productController.product_update_post);
 router.get('/product/:id', productController.product_details);
 router.get('/product/:id/delete', productController.product_delete_get);
 router.post('/product/:id/delete', productController.product_delete_post);
