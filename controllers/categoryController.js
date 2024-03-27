@@ -4,6 +4,14 @@ const Product = require('../models/product');
 
 const asyncHandler = require('express-async-handler');
 
+exports.category_list = asyncHandler(async (req, res, next) => {
+  const allCategories = await Category.find().sort({ name: 1 }).exec();
+  res.render('category_list', {
+    title: 'All Categories',
+    category_list: allCategories,
+  });
+})
+
 exports.category_create_get =  (req, res, next) => {
   res.render('category_form', {
     title: 'Create New Category',
@@ -21,6 +29,7 @@ exports.category_create_post = [
       res.render('category_form', {
         title: 'Create New Category',
         errors: errors.array(),
+        name: req.body.name,
       });
       return;
     } else  {
@@ -29,6 +38,7 @@ exports.category_create_post = [
         res.render('category_form', {
           title: 'Create New Category',
           category_exists: categoryExists,
+          name: req.body.name,
           });
         return;
       } else {
@@ -38,14 +48,6 @@ exports.category_create_post = [
     }
   }),
 ];
-
-exports.category_list = asyncHandler(async (req, res, next) => {
-  const allCategories = await Category.find().sort({ name: 1 }).exec();
-  res.render('category_list', {
-    title: 'All Categories',
-    category_list: allCategories,
-  });
-})
 
 exports.category_products = asyncHandler( async (req, res, next) => {
   const [category, products] = await Promise.all([
@@ -77,13 +79,9 @@ exports.category_delete_get = asyncHandler( async (req, res, next) => {
       category: category,
       });
     }
-
 });
 
 exports.category_delete_post = asyncHandler( async (req, res, next) => {
-  const [category, categoryProducts] = await Promise.all([
-    Category.findbyId(req.params.id).exec(),
-    Product.find({category: req.params.id}).exec(),
-  ]);
+  await Category.findbyId(req.params.id).remove().exec();
+  res.redirect('/catalog');
 });
-
