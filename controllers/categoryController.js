@@ -29,7 +29,6 @@ exports.category_create_post = [
       res.render('category_form', {
         title: 'Create New Category',
         errors: errors.array(),
-        name: req.body.name,
       });
       return;
     } else  {
@@ -82,6 +81,8 @@ exports.category_delete_get = asyncHandler( async (req, res, next) => {
 });
 
 exports.category_delete_post = asyncHandler( async (req, res, next) => {
-  await Category.findbyId(req.params.id).remove().exec();
+  const category = await Category.findById(req.params.id).exec();
+  await category.deleteOne();
+
   res.redirect('/catalog');
 });
