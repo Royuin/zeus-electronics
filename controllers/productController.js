@@ -3,6 +3,16 @@ const asyncHandler = require('express-async-handler');
 const Category = require('../models/category');
 const Product = require('../models/product');
 
+exports.product_details = asyncHandler( async (req, res, next) => {
+  const product = await Product.findById( req.params.id ).exec();
+  const category = await Category.findById(product.category).exec();
+
+  res.render('product_details', {
+    product: product,
+    category: category,
+  });
+});
+
 exports.product_create_get = asyncHandler( async (req, res, next) => {
   const categories = await Category.find().exec();
 
@@ -62,14 +72,23 @@ exports.product_create_post = [
   }),
 ]
 
-exports.product_details = asyncHandler( async (req, res, next) => {
-  const product = await Product.findById( req.params.id ).exec();
+exports.product_update_get = asyncHandler( async (req, res, next) => {
+  const product = await Product.findById(req.params.id).exec();
   const category = await Category.findById(product.category).exec();
+  const categories = await Category.find().exec();
 
-  res.render('product_details', {
-    product: product,
-    category: category,
-  });
+  res.render('product_form', {
+    title: `Update product ${product.name}`,
+    name: product.name,
+    category_selection: category.name,
+    description: product.description,
+    price: product.price,
+    quantity: product.price,
+    categories: categories,
+    })
+});
+
+exports.product_update_post = asyncHandler( async (req, res, next) => {
 });
 
 exports.product_delete_get = asyncHandler( async (req, res, next) => {
@@ -84,7 +103,7 @@ exports.product_delete_get = asyncHandler( async (req, res, next) => {
 
 exports.product_delete_post = asyncHandler( async (req, res, next) => {
   const product = await Product.findById(req.params.id).exec();
-
   await product.deleteOne();
+
   res.redirect('/');
 });
