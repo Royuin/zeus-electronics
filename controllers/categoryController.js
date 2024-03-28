@@ -12,6 +12,18 @@ exports.category_list = asyncHandler(async (req, res, next) => {
   });
 })
 
+exports.category_products = asyncHandler( async (req, res, next) => {
+  const [category, products] = await Promise.all([
+    Category.findById(req.params.id).exec(),
+    Product.find({category: req.params.id}).exec(),
+  ]);
+
+  res.render('category_products', {
+    products: products,
+    category: category,
+  });
+});
+
 exports.category_create_get =  (req, res, next) => {
   res.render('category_form', {
     title: 'Create New Category',
@@ -48,17 +60,18 @@ exports.category_create_post = [
   }),
 ];
 
-exports.category_products = asyncHandler( async (req, res, next) => {
-  const [category, products] = await Promise.all([
-    Category.findById(req.params.id).exec(),
-    Product.find({category: req.params.id}).exec(),
-  ]);
+exports.category_update_get = asyncHandler( async (req, res, next) => {
+  const category = await Category.findById(req.params.id).exec();
 
-  res.render('category_products', {
-    products: products,
-    category: category,
+  res.render('category_form', {
+    title: 'Update Category',
+    name: category.name,
   });
-});
+})
+
+exports.category_update_post = [
+
+];
 
 exports.category_delete_get = asyncHandler( async (req, res, next) => {
   const [category, categoryProducts] = await Promise.all([
