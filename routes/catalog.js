@@ -7,6 +7,8 @@ router.get('/', categoryController.category_list);
 
 router.get('/category/create', categoryController.category_create_get);
 router.post('/category/create', categoryController.category_create_post);
+router.get('/category/:hypenName/:id/update', categoryController.category_update_get);
+router.post('/category/:hypenName/:id/update', categoryController.category_update_post);
 router.get('/category/:hypenName/:id', categoryController.category_products);
 router.get('/category/:hypenName/:id/delete', categoryController.category_delete_get);
 router.post('/category/:hypenName/:id/delete', categoryController.category_delete_post);
