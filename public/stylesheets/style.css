@@ -29,3 +29,28 @@ h1 {
 a {
   color: #00B7FF;
 }
+
+main {
+  display: grid;
+  place-content: center; 
+  text-align: center;
+  gap: 5vw;
+}
+
+form {
+  display: grid;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  gap: 2vw;
+  background-color: #d1d5db;
+  padding: 20px 40px;
+  border-radius: 5px;
+  box-shadow: 0 0 20px #cbd5e1;
+}
+
+.label-input-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 10vw;
+}
