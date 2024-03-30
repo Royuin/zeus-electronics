@@ -14,6 +14,6 @@ block content
           a(href=product.url) #{product.name}
 
   if (!category_products) 
-    form(method='POST')
+    form.delete-form(method='POST')
       button(type='submit') Delete
 
