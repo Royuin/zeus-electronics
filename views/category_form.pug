@@ -5,8 +5,9 @@ block content
   h2= title
 
   form(method='POST')
-    label(for='name') Name:
-    input#name(type='text', name='name', value=(name === undefined ? '' : name))
+    div.label-input-wrapper
+      label(for='name') Name:
+      input#name(type='text', name='name', value=(name === undefined ? '' : name)) 
     button(type='submit') Submit
 
   if (errors)
