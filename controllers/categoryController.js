@@ -70,7 +70,32 @@ exports.category_update_get = asyncHandler( async (req, res, next) => {
 })
 
 exports.category_update_post = [
+  body('name', 'Name must not be empty and at least 3 characters.').trim().isLength({min: 3}).escape(),
 
+  asyncHandler( async (req, res, next) => {
+    const errors = validationResult(req);
+
+    if(!errors.isEmpty()) {
+      res.render('category_form', {
+        title: 'Update Category',
+        name: req.body.name,
+      });
+    } else {
+      const categoryExists = await Category.findOne({name: req.body.name});
+
+      if (categoryExists) {
+        res.render('category_form', {
+          title: 'Update Category',
+          name: req.body.name,
+          category_exists: categoryExists,
+        });
+      } else {
+        const update = {name: req.body.name};
+        const updatedCategory = await Category.findByIdAndUpdate(req.params.id, update);
+        res.redirect(updatedCategory.url);
+      }
+    }
+  }),
 ];
 
 exports.category_delete_get = asyncHandler( async (req, res, next) => {
