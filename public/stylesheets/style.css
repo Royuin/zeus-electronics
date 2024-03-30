@@ -25,6 +25,10 @@ nav {
 h1 {
   font-size: clamp(20px, 2vw, 35px);
 }
+
+h2 {
+  margin-bottom: 3vw;
+}
  
 a {
   color: #00B7FF;
@@ -34,7 +38,10 @@ main {
   display: grid;
   place-content: center; 
   text-align: center;
-  gap: 5vw;
+}
+
+li {
+  list-style: none;
 }
 
 form {
@@ -47,6 +54,15 @@ form {
   padding: 20px 40px;
   border-radius: 5px;
   box-shadow: 0 0 20px #cbd5e1;
+}
+
+.delete-form {
+  justify-content: center;
+}
+
+form > button {
+  padding: 10px 20px;
+  cursor: pointer;
 }
 
 .label-input-wrapper {
