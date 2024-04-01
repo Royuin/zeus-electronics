@@ -13,14 +13,8 @@ const mongoose = require('mongoose');
 
 main().catch(err => console.log(err));
 
-mongoose.set('strictQuery', false);
-
-const dev_db_url = 'mongodb+srv://royuindev:zeusadmin@zeus-electronics.cbomskj.mongodb.net/?retryWrites=true&w=majority';
-const mongoDB = process.env.MONGODB_URI || dev_db_url;
-
-main().catch((err) => console.log(err));
 async function main() {
-  await mongoose.connect(mongoDB);
+  await mongoose.connect('mongodb+srv://royuindev:zeusadmin@zeus-electronics.cbomskj.mongodb.net/?retryWrites=true&w=majority');
 }
 
 // view engine setup
