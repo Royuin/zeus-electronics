@@ -10,9 +10,9 @@ block content
     li 
       p= product.description
     li 
-      p= product.price
+      p $#{product.price}
     li 
-      p= product.quantity
+      p Quantity: #{product.quantity}
 
   a(href=`/catalog/product/${product._id}/delete`) Delete this product
   a(href=`/catalog/product/${product._id}/update`) Update this product
