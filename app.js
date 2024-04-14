@@ -1,3 +1,4 @@
+require('dotenv').config();
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -14,7 +15,7 @@ const mongoose = require('mongoose');
 main().catch(err => console.log(err));
 
 async function main() {
-  await mongoose.connect('mongodb+srv://royuindev:zeusadmin@zeus-electronics.cbomskj.mongodb.net/?retryWrites=true&w=majority');
+  await mongoose.connect(process.env.MONGO_URL);
 }
 
 // view engine setup
